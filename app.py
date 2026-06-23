@@ -1,5 +1,9 @@
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(__file__))
 from flask import Flask, request, jsonify
-from engine.ticket_builder import generate_ticket
+from ticket_builder import generate_ticket
 
 app = Flask(__name__)
 
@@ -35,5 +39,8 @@ def generate():
     })
 
 
+import os
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
